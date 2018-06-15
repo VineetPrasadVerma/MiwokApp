@@ -9,7 +9,9 @@ public class Word {
     private String mMiwokTranslation;
 
     /**Image Resource id for the word */
-    private int mImageResourceId;
+    private int mImageResourceId = NO_IMAGE_PROVIDED;
+
+    private static int NO_IMAGE_PROVIDED =-1;
 
     /**
      * Create a new Word object.
@@ -54,6 +56,13 @@ public class Word {
     // Get the image resource id for the word
     public int getImageResourceId(){
         return mImageResourceId;
+    }
+
+    public boolean hasImage(){
+        if(mImageResourceId == NO_IMAGE_PROVIDED){
+            return false;
+        }
+        return true;
     }
 
 }
