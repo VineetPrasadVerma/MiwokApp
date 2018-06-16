@@ -13,6 +13,8 @@ public class Word {
 
     private static int NO_IMAGE_PROVIDED =-1;
 
+    private int mMusicResourceId;
+
     /**
      * Create a new Word object.
      *
@@ -20,9 +22,10 @@ public class Word {
      *                           (such as English)
      * @param miwokTranslation is the word in the Miwok language
      */
-    public Word(String defaultTranslation, String miwokTranslation) {
+    public Word(String defaultTranslation, String miwokTranslation ,int musicResourceId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
+        mMusicResourceId = musicResourceId;
     }
 
     /**
@@ -33,10 +36,11 @@ public class Word {
      * @param miwokTranslation is the word in the Miwok language
      * @param imageResourceId is the image resource id on the image.
      */
-    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId){
+    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId ,int musicResourceId){
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mImageResourceId = imageResourceId;
+        mMusicResourceId = musicResourceId;
     }
 
     /**
@@ -63,6 +67,10 @@ public class Word {
             return false;
         }
         return true;
+    }
+
+    public int getMusicResourceId() {
+        return mMusicResourceId;
     }
 
 }
