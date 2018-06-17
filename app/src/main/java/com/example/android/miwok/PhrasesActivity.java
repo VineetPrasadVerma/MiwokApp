@@ -11,8 +11,13 @@ import java.util.ArrayList;
 
 public class PhrasesActivity extends AppCompatActivity {
 
+    /** Handles playback of all the sound files */
     private MediaPlayer mMediaPlayer;
 
+    /**
+     * This listener gets triggered when the {@link MediaPlayer} has completed
+     * playing the audio file.
+     */
     private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
@@ -55,10 +60,22 @@ public class PhrasesActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // Release the media player if it currently exists because we are about to
+                // play a different sound file
                 releaseMediaPlayer();
+
+                // Get the {@link Word} object at the given position the user clicked on
                 Word word = words.get(i);
-                mMediaPlayer = MediaPlayer.create(PhrasesActivity.this , word.getMusicResourceId());
+
+                // Create and setup the {@link MediaPlayer} for the audio resource associated
+                // with the current word
+                mMediaPlayer = MediaPlayer.create(PhrasesActivity.this, word.getMusicResourceId());
+
+                // Start the audio file
                 mMediaPlayer.start();
+
+                // Setup a listener on the media player, so that we can stop and release the
+                // media player once the sound has finished playing.
                 mMediaPlayer.setOnCompletionListener(mCompletionListener);
             }
         });
@@ -67,6 +84,8 @@ public class PhrasesActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        // When the activity is stopped, release the media player resources because we won't
+        // be playing any more sounds.
         releaseMediaPlayer();
     }
 
