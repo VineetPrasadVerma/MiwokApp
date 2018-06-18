@@ -118,7 +118,7 @@ public class NumbersActivity extends AppCompatActivity {
                 // Get the {@link Word} object at the given position the user clicked on
                 Word word = words.get(i);
 
-                // Request audio focus for playback
+                // RWe have audio focus now.
                 int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
                         // Use the music stream.
                         AudioManager.STREAM_MUSIC,

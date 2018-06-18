@@ -16,6 +16,9 @@
         android:layout_height="@dimen/list_item_height"
         android:orientation="vertical"
         android:layout_toRightOf="@+id/image_view"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:paddingLeft="@dimen/sixteen_dp">
 
         <TextView
@@ -39,7 +42,13 @@
 
     </LinearLayout>
 
-    <RelativeLayout>
+    <ImageView
+        android:layout_height="@dimen/twenty_four_dp"
+        android:layout_width="@dimen/twenty_four_dp"
+        android:src="@drawable/baseline_play_arrow_white_24"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/sixteen_dp"
+        android:layout_centerVertical="true"/>
 
 
 </RelativeLayout>

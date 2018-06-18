@@ -21,4 +21,5 @@
     <dimen name="sixteen_dp">16dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
     <dimen name="eighteen_sp">18sp</dimen>
+    <dimen name="twenty_four_dp">24dp</dimen>
 </resources>

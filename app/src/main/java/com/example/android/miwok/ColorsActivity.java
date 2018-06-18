@@ -1,5 +1,7 @@
 package com.example.android.miwok;
 
+import android.app.Activity;
+import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -11,13 +13,13 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class ColorsActivity extends AppCompatActivity {
-
+    /**
+     * Handles playback of all the sound files
+     */
     private MediaPlayer mMediaPlayer;
 
     /** Handles audio focus when playing a sound file */
     private AudioManager mAudioManager;
-
-    /**
 
     /**
      * This listener gets triggered when the {@link MediaPlayer} has completed
@@ -26,7 +28,6 @@ public class ColorsActivity extends AppCompatActivity {
     private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
-            // Now that the sound file has finished playing, release the media player resources.
             releaseMediaPlayer();
         }
     };
@@ -60,6 +61,9 @@ public class ColorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
+
+        // Create and setup the {@link AudioManager} to request audio focus
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
 
         // Create a list of words
@@ -96,8 +100,7 @@ public class ColorsActivity extends AppCompatActivity {
 
                 // Get the {@link Word} object at the given position the user clicked on
                 Word word = words.get(i);
-
-                // Request audio focus for playback
+// Request audio focus for playback
                 int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
                         // Use the music stream.
                         AudioManager.STREAM_MUSIC,
@@ -120,7 +123,6 @@ public class ColorsActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     @Override
@@ -145,6 +147,9 @@ public class ColorsActivity extends AppCompatActivity {
             // setting the media player to null is an easy way to tell that the media player
             // is not configured to play an audio file at the moment.
             mMediaPlayer = null;
+
+            //Abandon audio focus when playback is complete
+            mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
     }
 }
