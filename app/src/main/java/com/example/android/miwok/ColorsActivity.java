@@ -62,9 +62,11 @@ public class ColorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
+        //For displaying Up button on the screen .
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Create and setup the {@link AudioManager} to request audio focus
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
 
         // Create a list of words
         final ArrayList<Word> words = new ArrayList<Word>();
